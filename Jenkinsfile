@@ -19,10 +19,10 @@ pipeline {
                 echo "========== [STAGE 1] Pull & Build =========="
 
                 // Pull les images de base déclarées dans le compose
-                sh "docker compose -f ${COMPOSE_FILE} pull --ignore-pull-failures"
+                sh "docker-compose -f ${COMPOSE_FILE} pull --ignore-pull-failures"
 
                 // Build toutes les images définies dans le compose
-                sh "docker compose -f ${COMPOSE_FILE} build --no-cache"
+                sh "docker-compose -f ${COMPOSE_FILE} build --no-cache"
 
                 echo "✅ Images Docker construites avec succès."
             }
