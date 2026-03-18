@@ -1,29 +1,10 @@
-version: "3.9"
-
 services:
   myapp:
     build:
       context: .
       dockerfile: Dockerfile
-    image: myapp:latest          # nom utilisé par Trivy dans le Jenkinsfile
+    image: myapp:latest
     container_name: myapp
     ports:
-      - "8080:8080"
-    environment:
-      - APP_ENV=production
+      - "80:80"
     restart: unless-stopped
-
-  # Exemple d'un service base de données (optionnel)
-  db:
-    image: postgres:15-alpine    # image publique → sera pullée au stage 1
-    container_name: myapp_db
-    environment:
-      POSTGRES_DB:       appdb
-      POSTGRES_USER:     appuser
-      POSTGRES_PASSWORD: secret
-    volumes:
-      - db_data:/var/lib/postgresql/data
-    restart: unless-stopped
-
-volumes:
-  db_data:
